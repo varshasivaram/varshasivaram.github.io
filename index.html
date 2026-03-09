@@ -1,216 +1,517 @@
-<!DOCTYPE HTML>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Forty by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Varsha Sivaram — Data & Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #F7F5F0;
+      --ink: #1A1814;
+      --accent: #C84B2F;
+      --muted: #8A8478;
+      --rule: #D9D4CA;
+      --card: #EFECE6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(247,245,240,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.2fr 1fr;
+      align-items: center; padding: 8rem 3rem 4rem; gap: 4rem; position: relative;
+    }
+    .hero::after {
+      content: ''; position: absolute; left: 50%; top: 10%; bottom: 10%;
+      width: 1px; background: linear-gradient(to bottom, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+    }
+    .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 7vw, 6rem); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-tagline { font-size: 1rem; color: var(--muted); max-width: 480px; line-height: 1.85; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+    .btn { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 0.85rem 1.8rem; border: 1px solid var(--ink); color: var(--ink); transition: all 0.25s; display: inline-block; }
+    .btn:hover { background: var(--ink); color: var(--bg); }
+    .btn-accent { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .btn-accent:hover { background: transparent; color: var(--accent); }
+    .hero-right { display: flex; flex-direction: column; gap: 1.2rem; opacity: 0; animation: fadeIn 1s 1s forwards; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card { background: var(--card); padding: 1.5rem; border: 1px solid var(--rule); }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .domain-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.8rem; border: 1px solid var(--rule); color: var(--muted); }
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
-						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
-					</nav>
+    section { padding: 6rem 3rem; border-top: 1px solid var(--rule); }
+    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .section-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.01em; }
+    .section-rule { flex: 1; height: 1px; background: var(--rule); }
 
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-							<header class="major">
-								<h1>Hi, this is Varsha Sivaram</h1>
-							</header>
-							<div class="content">
-								<p>I'm building this website at the moment.<br />
-								Wanna chat? Write to me at varshasivaram@uchicago.edu</p>
-								<ul class="actions">
-									<li><a href="#one" class="button next scrolly">My work</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
+    .about-body p { font-size: 1.05rem; line-height: 1.85; color: var(--ink); margin-bottom: 1.2rem; }
+    .about-body p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 600; float: left; line-height: 0.8; margin-right: 0.1em; margin-top: 0.08em; color: var(--accent); }
+    .about-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
+    .sidebar-block { padding: 1.2rem; border-left: 2px solid var(--accent); background: var(--card); }
+    .sidebar-block-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .sidebar-block-value { font-size: 0.88rem; color: var(--ink); line-height: 1.6; }
 
-				<!-- Main -->
-					<div id="main">
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-tab { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 1rem; border: 1px solid var(--rule); color: var(--muted); cursor: pointer; background: transparent; transition: all 0.2s; }
+    .filter-tab:hover, .filter-tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Resumé</a></h3>
-										<p>Ipsum dolor sit amet</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Interests</a></h3>
-										<p>feugiat amet tempus</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic03.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Work Experience</a></h3>
-										<p>Lorem etiam nullam</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic04.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Projects</a></h3>
-										<p>Nisl sed aliquam</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Pix</a></h3>
-										<p>Ipsum dolor sit amet</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic06.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="landing.html" class="link">Values</a></h3>
-										<p>Feugiat amet tempus</p>
-									</header>
-								</article>
-							</section>
+    .research-list { display: flex; flex-direction: column; }
+    .research-item { display: grid; grid-template-columns: 55px 1fr auto; align-items: start; gap: 2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; transition: all 0.2s; }
+    .research-item:hover { background: var(--card); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; }
+    .research-year { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); padding-top: 0.25rem; }
+    .research-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.25rem; line-height: 1.3; }
+    .research-venue { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .research-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .rtag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--rule); color: var(--muted); }
+    .research-arrow { font-size: 1rem; color: var(--muted); padding-top: 0.25rem; }
 
-						<!-- Two -->
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>Massa libero</h2>
-									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-									<ul class="actions">
-										<li><a href="landing.html" class="button next">Get Started</a></li>
-									</ul>
-								</div>
-							</section>
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .project-card { background: var(--card); border: 1px solid var(--rule); padding: 2rem; position: relative; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: block; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .project-card-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--rule); position: absolute; top: 1rem; right: 1.2rem; line-height: 1; }
+    .project-type { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+    .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.2; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; padding: 0.25rem 0.6rem; border: 1px solid var(--rule); color: var(--muted); }
 
-					</div>
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.1; margin-bottom: 1rem; }
+    .contact-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--ink); font-size: 0.88rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); transition: color 0.2s; }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); width: 70px; flex-shrink: 0; }
+    .contact-right { background: var(--ink); color: var(--bg); padding: 3rem; }
+    .contact-right-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .cv-detail { display: flex; flex-direction: column; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .cv-detail-role { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; margin-bottom: 0.2rem; }
+    .cv-detail-org { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+    .cv-btn { margin-top: 2rem; display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 1.8rem; border: 1px solid rgba(255,255,255,0.3); color: var(--bg); text-decoration: none; transition: all 0.25s; }
+    .cv-btn:hover { background: var(--accent); border-color: var(--accent); }
 
-				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>1234 Somewhere Road #5432<br />
-										Nashville, TN 00000<br />
-										United States of America</span>
-									</div>
-								</section>
-							</section>
-						</div>
-					</section>
+    footer { border-top: 1px solid var(--rule); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-			</div>
+    .research-item[data-hidden="true"], .project-card[data-hidden="true"] { display: none; }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; }
+      .hero::after { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      section { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.8rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .research-item { grid-template-columns: 48px 1fr; }
+      .research-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
 
-	</body>
+<nav>
+  <div class="nav-logo">VS · Data & Development</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-</html>
+<!-- HERO -->
+<section class="hero" style="border-top:none;">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Geospatial Data Scientist · Development Economist · Policy Researcher</p>
+    <h1 class="hero-name">Varsha<br><em>Sivaram</em></h1>
+    <p class="hero-tagline">I work at the intersection of data, geography, and development — using spatial analysis, survey science, and applied economics to understand gender, health, and the systems that shape people's lives across 20+ countries.</p>
+    <div class="hero-cta">
+      <a href="#research" class="btn btn-accent">View Research</a>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">Years of Research Experience</div></div>
+      <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">Country Contexts</div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num">500K+</div><div class="stat-label">Survey Respondents</div></div>
+      <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">Field Teams Managed</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label" style="margin-bottom:0.8rem">Domains</div>
+      <div class="domain-tags">
+        <span class="tag">Gender</span><span class="tag">Health</span><span class="tag">Geospatial</span>
+        <span class="tag">AI & Tech for Good</span><span class="tag">Public Policy</span>
+        <span class="tag">GovTech</span><span class="tag">Survey Methods</span><span class="tag">Dev Economics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I'm a geospatial data scientist and development economist with over eight years of experience translating complex spatial, survey, and satellite data into insights that move policy and investment. My work spans gender equity, global health, digital infrastructure, and economic development — almost always across the Global South, and always with the question of who gets counted and who gets left out.</p>
+      <p>Most recently I'm at <strong>Surgo Health</strong>, continuing to bridge the gap between granular data and real-world decision-making. Before that, I spent four years at Fraym as Senior Economic Geographer, leading $15M+ engagements for the Gates Foundation, Johnson &amp; Johnson Global Public Health, USAID, World Bank, and private investors — building hyperlocal models that put geospatial intelligence in the hands of practitioners who need it most across sub-Saharan Africa, MENA, and Asia.</p>
+      <p>Prior to Fraym, I was a Research Associate at Innovations for Poverty Action in Dhaka, leading field impact evaluation on women's digital finance in Bangladesh — managing 100+ enumerators, designing 15+ CAPI surveys, and working alongside World Bank researchers to understand what actually changes when women gain access to mobile money.</p>
+      <p>My research interests sit at the intersection of gender norms, health behaviour, digital access, and the methodological frontiers of survey and spatial science. I believe the best analysis is the kind that can be understood, acted on, and held accountable.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-block-label">Currently</div>
+        <div class="sidebar-block-value">Surgo Health<br>Delhi, India</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-block-label">Previously</div>
+        <div class="sidebar-block-value">Fraym (Senior Economic Geographer) · Innovations for Poverty Action · UChicago · Economist Intelligence Unit · ICRIER</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-block-label">Education</div>
+        <div class="sidebar-block-value">MPP, Harris School of Public Policy, University of Chicago<br><br>BA Economics (Hons), University of Delhi</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-block-label">Tools & Methods</div>
+        <div class="sidebar-block-value">R · Python · Stata · SQL · ArcGIS · QGIS · GeoDa · CARTO · RShiny · AWS · SurveyCTO · LaTeX</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-block-label">Languages</div>
+        <div class="sidebar-block-value">English · Hindi · Tamil (Fluent)<br>Bengali (Intermediate)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Research & Publications</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="filter-tabs" id="research-filters">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="gender">Gender</button>
+    <button class="filter-tab" data-filter="health">Health</button>
+    <button class="filter-tab" data-filter="methods">Survey Methods</button>
+    <button class="filter-tab" data-filter="economics">Economics</button>
+  </div>
+  <div class="research-list">
+
+    <a href="#" class="research-item" data-tags="methods">
+      <span class="research-year">2026</span>
+      <div class="research-content">
+        <div class="research-title">Age Heaping in CATI Surveys in Kenya and Nigeria</div>
+        <div class="research-venue">Cross-Cultural Research in Practice (Book Chapter) · Lau, C., Sivaram, V., et al.</div>
+        <div class="research-tags"><span class="rtag">Survey Methods</span><span class="rtag">CATI</span><span class="rtag">Africa</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="gender health">
+      <span class="research-year">2025</span>
+      <div class="research-content">
+        <div class="research-title">How Social Norms Mediate the Effects of Media Consumption on AGYW Behaviors: A Panel Study</div>
+        <div class="research-venue">Gender Norms Data Engine · Fraym · John, N., Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Gender</span><span class="rtag">SRH</span><span class="rtag">Adolescents</span><span class="rtag">Media</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="gender health">
+      <span class="research-year">2025</span>
+      <div class="research-content">
+        <div class="research-title">Amplifying Impact: Leveraging Peer and Community Norms to Transform Adolescent SRH in Kenya and Nigeria</div>
+        <div class="research-venue">Gender Norms Data Engine · Fraym · John, N., Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Gender</span><span class="rtag">Health</span><span class="rtag">Kenya</span><span class="rtag">Nigeria</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="gender methods">
+      <span class="research-year">2025</span>
+      <div class="research-content">
+        <div class="research-title">Validation of G-NORM Scale in Kenya and Nigeria</div>
+        <div class="research-venue">Gender Norms Data Engine · Fraym · John, N., Staats, A., & Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Gender Norms</span><span class="rtag">Scale Validation</span><span class="rtag">Methods</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="gender economics">
+      <span class="research-year">2025</span>
+      <div class="research-content">
+        <div class="research-title">The Power of Community Support: Gender Norms and Young Women's Economic Empowerment in Kenya and Nigeria</div>
+        <div class="research-venue">Gender Norms Data Engine · Fraym · John, N., Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Gender</span><span class="rtag">Economic Empowerment</span><span class="rtag">AGYW</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="methods">
+      <span class="research-year">2025</span>
+      <div class="research-content">
+        <div class="research-title">Age Heaping in CATI Surveys in Kenya and Nigeria</div>
+        <div class="research-venue">Survey Practice · Special Issue on Cross-Cultural & Multilingual Research · Lau, C., Kumaresan, J., Sivaram, V., et al.</div>
+        <div class="research-tags"><span class="rtag">Survey Methods</span><span class="rtag">CATI</span><span class="rtag">Cross-Cultural</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="health">
+      <span class="research-year">2023</span>
+      <div class="research-content">
+        <div class="research-title">A Novel Adaptation of Spatial Interpolation Methods to Map Health Attitudes Related to COVID-19</div>
+        <div class="research-venue">BMC Proceedings · Fraym</div>
+        <div class="research-tags"><span class="rtag">Geospatial</span><span class="rtag">Health</span><span class="rtag">COVID-19</span><span class="rtag">Spatial Methods</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="health">
+      <span class="research-year">2022</span>
+      <div class="research-content">
+        <div class="research-title">Geospatial Analysis of Vaccine Hesitancy</div>
+        <div class="research-venue">Fraym</div>
+        <div class="research-tags"><span class="rtag">Vaccines</span><span class="rtag">Geospatial</span><span class="rtag">Health</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="economics gender">
+      <span class="research-year">2021</span>
+      <div class="research-content">
+        <div class="research-title">Estimating the Return on Investment of Child Caregiving Programs in Nigeria, South Africa, Kenya, India, Indonesia</div>
+        <div class="research-venue">Fraym</div>
+        <div class="research-tags"><span class="rtag">Caregiving</span><span class="rtag">ROI</span><span class="rtag">Gender</span><span class="rtag">Multi-country</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="economics health">
+      <span class="research-year">2021</span>
+      <div class="research-content">
+        <div class="research-title">COVID-19 Economic Effects on Vulnerable Groups in South Africa, India</div>
+        <div class="research-venue">Fraym</div>
+        <div class="research-tags"><span class="rtag">COVID-19</span><span class="rtag">Economics</span><span class="rtag">Vulnerability</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="economics">
+      <span class="research-year">2018</span>
+      <div class="research-content">
+        <div class="research-title">Emerging Trends in India-Pakistan Trade</div>
+        <div class="research-venue">ICRIER Working Paper 363 · Taneja, N., Bimal, S., Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Trade</span><span class="rtag">South Asia</span><span class="rtag">Policy</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+    <a href="#" class="research-item" data-tags="economics">
+      <span class="research-year">2015</span>
+      <div class="research-content">
+        <div class="research-title">Economic Growth and Social Development: Addressing the Divergences</div>
+        <div class="research-venue">Yojana Vol 59 · Bhanumurthy, N. R., Sivaram, V.</div>
+        <div class="research-tags"><span class="rtag">Development</span><span class="rtag">India</span><span class="rtag">Social Policy</span></div>
+      </div>
+      <span class="research-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects & Work</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="filter-tabs" id="project-filters">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="gender">Gender</button>
+    <button class="filter-tab" data-filter="health">Health</button>
+    <button class="filter-tab" data-filter="ai">AI / Tech for Good</button>
+    <button class="filter-tab" data-filter="fieldwork">Fieldwork</button>
+    <button class="filter-tab" data-filter="mapping">Mapping</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="gender health mapping">
+      <div class="project-card-num">01</div>
+      <div class="project-type">Gender · Health · Dashboard</div>
+      <div class="project-title">Gender Norms Data Engine</div>
+      <p class="project-desc">700+ indicator geospatial dashboard tracking adolescent economic and health outcomes for the Gates Foundation. Built to put hyperlocal evidence on peer, media, and community norm influences directly in practitioners' hands.</p>
+      <div class="project-stack"><span class="stack-tag">RShiny</span><span class="stack-tag">QGIS</span><span class="stack-tag">DHS</span><span class="stack-tag">Gallup</span><span class="stack-tag">Gates Foundation</span></div>
+    </div>
+
+    <div class="project-card" data-tags="health mapping">
+      <div class="project-card-num">02</div>
+      <div class="project-type">Health · Risk Mapping</div>
+      <div class="project-title">Ebola Risk & Vaccine Hesitancy Atlas</div>
+      <p class="project-desc">Spatial risk-profile mapping for J&J Global Public Health — identifying outbreak clusters and modelling community hesitancy to inform vaccination strategy and resource deployment across West Africa.</p>
+      <div class="project-stack"><span class="stack-tag">Spatial Interpolation</span><span class="stack-tag">ArcGIS</span><span class="stack-tag">Python</span><span class="stack-tag">J&J GPH</span></div>
+    </div>
+
+    <div class="project-card" data-tags="ai mapping">
+      <div class="project-card-num">03</div>
+      <div class="project-type">AI · Infrastructure</div>
+      <div class="project-title">Hyperlocal ML for Infrastructure Siting</div>
+      <p class="project-desc">Fusing DHS, Census, NDVI, WorldPop, and MODIS satellite layers to train ML models that generate granular investment signals for Wi-Fi connectivity gaps, mini-grid development, and health facility placement.</p>
+      <div class="project-stack"><span class="stack-tag">ML</span><span class="stack-tag">WorldPop</span><span class="stack-tag">MODIS</span><span class="stack-tag">AWS</span><span class="stack-tag">USAID · USTDA</span></div>
+    </div>
+
+    <div class="project-card" data-tags="fieldwork gender">
+      <div class="project-card-num">04</div>
+      <div class="project-type">Fieldwork · Digital Finance</div>
+      <div class="project-title">Women & Mobile Money — Bangladesh</div>
+      <p class="project-desc">End-to-end field impact evaluation with IPA and World Bank researchers on digital finance rollout targeting women in Dhaka. 15+ CAPI surveys, 100+ enumerators, spatial market georeferencing. Funded by BMGF, IGC, IFC.</p>
+      <div class="project-stack"><span class="stack-tag">SurveyCTO</span><span class="stack-tag">CAPI</span><span class="stack-tag">GeoPandas</span><span class="stack-tag">Stata</span></div>
+    </div>
+
+    <div class="project-card" data-tags="ai fieldwork">
+      <div class="project-card-num">05</div>
+      <div class="project-type">GovTech · Education</div>
+      <div class="project-title">TaRL School Digitisation — Ghana</div>
+      <p class="project-desc">Designed M&E tools and trained government officials to pilot UNICEF's mobile school management app across 283 schools. Evidence generated scaled targeted instruction to 10,000+ primary schools nationally.</p>
+      <div class="project-stack"><span class="stack-tag">M&E</span><span class="stack-tag">Mobile Survey</span><span class="stack-tag">UNICEF</span><span class="stack-tag">Ghana MoE</span></div>
+    </div>
+
+    <div class="project-card" data-tags="mapping health ai">
+      <div class="project-card-num">06</div>
+      <div class="project-type">Methods · Spatial Analysis</div>
+      <div class="project-title">Water Quality Sensor Mapping — India</div>
+      <p class="project-desc">Piloted real-time water quality sensor networks in Indian rivers, mapping contamination data spatially to assess seasonal health risk and inform regulatory intervention. With UChicago Tata Centre for Development.</p>
+      <div class="project-stack"><span class="stack-tag">Sensor Data</span><span class="stack-tag">GIS</span><span class="stack-tag">R</span><span class="stack-tag">UChicago Tata</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h3 class="contact-headline">Let's work<br><em>together.</em></h3>
+      <p class="contact-sub">Open to research collaborations, consulting engagements, conference presentations, and conversations about data, development, and the spaces in between.</p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#2a5c59435c4b584b471b1f6a4d474b434604494547" class="contact-link">
+          <span class="contact-link-label">Email</span><span class="__cf_email__" data-cfemail="ef999c86998e9d8e82dedaaf88828e8683c18c8082">[email&#160;protected]</span>
+        </a>
+        <a href="https://github.com/varshasivaram" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>github.com/varshasivaram
+        </a>
+        <a href="https://www.linkedin.com/in/varshasivaram/" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>linkedin.com/in/varshasivaram
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <span class="contact-link-label">Location</span>Delhi, India
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-right-title">Experience</div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Researcher</div>
+        <div class="cv-detail-org"><a href="https://surgohealth.com" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Surgo Health</a> · 2025–Present</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Senior Economic Geographer</div>
+        <div class="cv-detail-org"><a href="https://fraym.io" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Fraym</a>, Arlington VA · 2021–2025</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Research Associate</div>
+        <div class="cv-detail-org"><a href="https://www.poverty-action.org" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Innovations for Poverty Action</a>, Dhaka · 2019–2021</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Junior Consultant</div>
+        <div class="cv-detail-org"><a href="https://icrier.org" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">ICRIER</a>, Delhi · 2016–2017</div>
+      </div>
+
+      <div style="margin-top:1.5rem;margin-bottom:0.8rem;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Consulting & Part-time</div>
+
+      <div class="cv-detail">
+        <div class="cv-detail-role">Consultant</div>
+        <div class="cv-detail-org"><a href="https://www.eiu.com" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Economist Intelligence Unit</a>, Remote · 2017–2021</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Research & Data Consultant</div>
+        <div class="cv-detail-org"><a href="https://www.upwork.com" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Upwork</a> (LSE · UK NGO), Remote · 2020</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Graduate Research Assistant</div>
+        <div class="cv-detail-org"><a href="https://tatacentre.uchicago.edu" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">UChicago Tata Centre</a> & Behavioral Insights Lab · 2018</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Editorial Lead</div>
+        <div class="cv-detail-org"><a href="https://qrius.com" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Qrius.com</a>, Delhi · 2016–2017</div>
+      </div>
+      <div class="cv-detail">
+        <div class="cv-detail-role">Research Associate</div>
+        <div class="cv-detail-org">Consumers India, Delhi · 2014–2015</div>
+      </div>
+      <a href="#" class="cv-btn">Download Full CV →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Varsha Sivaram</div>
+  <div class="footer-copy">© 2026 · Data & Development · Delhi, India</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function makeFilter(filterGroupId, itemSelector) {
+    const tabs = document.querySelectorAll('#' + filterGroupId + ' .filter-tab');
+    const items = document.querySelectorAll(itemSelector);
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        items.forEach(item => {
+          const tags = item.dataset.tags || '';
+    
